@@ -7,12 +7,15 @@ main(){
     int a, b, c, d, e, i, j;
     srand48( getpid() );
     init_deck( deck );
-    hand[0]=deck[11];
-    hand[1]=deck[111];
-    hand[2]=0;
-    hand[3]=0;
-    hand[4]=0;
+    hand[0]=deck[0];
+    hand[1]=deck[1];
+    hand[2]=deck[2];
+    hand[3]=deck[3];
+    hand[4]=deck[4];
     i=eval_5hand(hand);
     j=hand_rank(i);
-    printf("%d\n",j);
+    printf("%d-%d\n",i,j);
+    i=eval_5hand_fast(hand[0],hand[1],hand[2],hand[3],hand[4]);
+    j=hand_rank(i);
+    printf("%d-%d\n",i,j);
 }

@@ -3,10 +3,10 @@ CC=gcc
 CFLAGS= -fPIC -shared
 
 text: text.c pokerlib.o
-	${CC} ${CFLAGS} text.c pokerlib.o -s -o text
+	${CC}  text.c pokerlib.o -s -o text
 
 allfive: allfive.c pokerlib.o
-	${CC} ${CFLAGS} allfive.c pokerlib.o -s -o allfive
+	${CC}  allfive.c pokerlib.o -s -o allfive
 
 libpoker.so: pokerlib.o
 	${CC} -fPIC -shared $^ -o $@
