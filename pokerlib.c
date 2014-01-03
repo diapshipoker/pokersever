@@ -154,13 +154,25 @@ unsigned find_fast(unsigned u)
     return r;
 }
 
-int eval_5hand_fast(int c1, int c2, int c3, int c4, int c5)
+int eval_5cards_fast(int c1, int c2, int c3, int c4, int c5)
 {   
     int q = (c1 | c2 | c3 | c4 | c5) >> 16;
     short s;
     if (c1 & c2 & c3 & c4 & c5 & 0xf000) return flushes[q]; // check for flushes and straight flushes
     if ((s = unique5[q]))                return s;          // check for straights and high card hands
     return hash_values[find_fast((c1 & 0xff) * (c2 & 0xff) * (c3 & 0xff) * (c4 & 0xff) * (c5 & 0xff))];
+}
+
+int eval_5hand_fast(int *hand)
+{
+    int c1, c2, c3, c4, c5;
+
+    c1 = *hand++;
+    c2 = *hand++;
+    c3 = *hand++;
+    c4 = *hand++;
+    c5 = *hand;
+    return( eval_5cards_fast(c1,c2,c3,c4,c5) );
 }
 
 short
@@ -219,6 +231,21 @@ eval_6hand(int *hand)
         return ( best );
 }
 
+int
+eval_6hand_fast(int *hand)
+{
+    int i, j, q,  best = 9999, subhand[5];
+        for( i = 0;i < 6; i++){
+               for ( j = 0; j < 5; j++)
+                       subhand[j] = hand[ perm6[i][j] ];
+               q = eval_5hand_fast( subhand );
+               if ( q < best )
+                       best = q;
+
+        }
+        return ( best );
+}
+
 // This is a non-optimized method of determining the
 // best five-card hand possible out of seven cards.
 // I am working on a faster algorithm.
@@ -237,6 +264,23 @@ eval_7hand( int *hand )
 			best = q;
 	}
 	return( best );
+
+}
+
+int
+eval_7hand_fast( int *hand )
+{
+    int i, j, q, best = 9999, subhand[5];
+
+        for ( i = 0; i < 21; i++ )
+        {
+                for ( j = 0; j < 5; j++ )
+                        subhand[j] = hand[ perm7[i][j] ];
+                q = eval_5hand_fast( subhand );
+                if ( q < best )
+                        best = q;
+        }
+        return( best );
 
 }
 

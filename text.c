@@ -15,7 +15,7 @@ main(){
     i=eval_5hand(hand);
     j=hand_rank(i);
     printf("%d-%d\n",i,j);
-    i=eval_5hand_fast(hand[0],hand[1],hand[2],hand[3],hand[4]);
+    i=eval_5hand_fast(hand);
     j=hand_rank(i);
     printf("%d-%d\n",i,j);
 }
