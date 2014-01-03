@@ -18,4 +18,10 @@ main(){
     i=eval_5hand_fast(hand);
     j=hand_rank(i);
     printf("%d-%d\n",i,j);
+    int k[2];
+    hand_brandname(hand[0],k);
+    printf("%d=%d\n",k[0],k[1]);
+    print_hand(hand,5);
+    int m=find_card(2,'c',deck);
+    printf("%d=%d\n",m,hand[0]);
 }

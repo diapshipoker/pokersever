@@ -47,3 +47,11 @@ a0[4]=c[14]
 h = so.eval_5hand(ctypes.pointer(a0))
 v = so.hand_rank(h)
 print values_rank[v]
+print "=================%d\n" % a0[0]
+#boardname=(ctypes.c_char*2)('0','0');
+boardname=(ctypes.c_int*2)(0,0);
+so.hand_brandname(a0[0],ctypes.pointer(boardname))
+print  "%d" % boardname[0]
+print  "%d" % boardname[1]
+qq=so.find_card(ctypes.c_int(boardname[1]),ctypes.c_int(boardname[0]),c)
+print qq

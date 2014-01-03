@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include<string.h>
 #include "arrays.h"
 #include "poker.h"
 
@@ -124,6 +125,24 @@ print_hand( int *hand, int n )
         printf( "%c%c ", rank[r], suit );
         hand++;
     }
+}
+
+void hand_brandname(int hand,int *s){
+    int  r;
+    int suit;
+    char rank[13]= {0,1,2,3,4,5,6,7,8,9,10,11,12};
+    r = (hand >> 8) & 0xF;
+    if ( hand & 0x8000 )
+            suit = 32768;
+    else if ( hand & 0x4000 )
+            suit = 16384;
+    else if ( hand & 0x2000 )
+            suit = 8192;
+    else
+            suit = 4096;
+
+    s[0]=suit;
+    s[1]=rank[r];
 }
 
 
