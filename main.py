@@ -54,4 +54,4 @@ so.hand_brandname(a0[0],ctypes.pointer(boardname))
 print  "%d" % boardname[0]
 print  "%d" % boardname[1]
 qq=so.find_card(ctypes.c_int(boardname[1]),ctypes.c_int(boardname[0]),c)
-print qq
+print c[qq]
