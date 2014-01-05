@@ -8,8 +8,8 @@ class pokerlib:
         self.deck = (ctypes.c_int*52)(0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0)
         self.so.init_main(ctypes.pointer(self.deck))
 
-    def shuffle_deck(self,d):
-        self.so.shuffle_deck(ctypes.pointer(d))
+    def shuffle_deck(self):
+        self.so.shuffle_deck(ctypes.pointer(self.deck))
 
     def eval_5hand_fast(self,h):
         return self.so.eval_5hand_fast(ctypes.pointer(h))
@@ -34,7 +34,7 @@ class pokerlib:
              
     def cmp_hand_size(self,vlist):
         iterlen = len(vlist)
-        smalllest = vlist[0]
+        smallest = vlist[0]
         a = []
         n = 0
         for i in range(1,iterlen):
@@ -42,7 +42,7 @@ class pokerlib:
                 smallest = vlist[i]
         for j in range(0,iterlen):
             if vlist[j][0] == smallest[0]:
-                a[n]=vlist[j][0]
+                a.append(vlist[j])
                 n = n + 1
         if len(a) > 1:
             a=self.cmp_hand_valsize(a)
@@ -59,7 +59,7 @@ class pokerlib:
                 smallest = a[i]
         for j in range(0,iterlen):
             if a[j][1] == smallest[1]:
-                b[n]=a[j][1]
+                b.append(a[j])
                 n = n + 1
 
         return b
