@@ -11,9 +11,6 @@ TWO_PAIR = 7
 ONE_PAIR = 8
 HIGH_CARD = 9
 
-def RANK(x):
-    (x >> 8) & 0xF
-
 value_str = (
 	"",
 	"Straight Flush",
