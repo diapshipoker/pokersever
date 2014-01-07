@@ -72,25 +72,35 @@ class roommember:
     def save(self):
 
         try:
-           table = self.get_table(self.roomid)
-           return table.save({'roomid':self.roomid,'uid':self.uid,
+            table = self.get_table(self.roomid)
+            return table.save({'roomid':self.roomid,'uid':self.uid,
                                       'joinchips':self.joinchips,'totalchips':self.totalchips,
                                       'boardnum':self.boardnum,'wins':self.wins,
                                       'maxhand':self.maxhand,'behavior':self.behavior})
         except IOError as e:
-           print e
+            print e
         else:
-           return 0
+            return 0
 
     def update(self):
 
         try:
-           table = self.get_table(self.roomid)
-           return table.update({'roomid':self.roomid,'uid':self.uid},
+            table = self.get_table(self.roomid)
+            return table.update({'roomid':self.roomid,'uid':self.uid},
                                              {'$set':{'totalchips':self.totalchips,
                                               'boardnum':self.boardnum,'wins':self.wins,
                                               'maxhand':self.maxhand,'behavior':self.behavior}})
         except IOError as e:
-           print e
+            print e
         else:
-           return 0
+            return 0
+
+    def remove(self,uid,roomid):
+
+        try:
+           table = self.get_table(roomid)
+           return table.remove({'roomid':roomid,'uid':uid})
+        except IOError as e:
+            print e
+        else:
+            return 0
