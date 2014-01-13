@@ -12,6 +12,7 @@ class roommember:
         self.totalchips = 0
         self.boardnum = 0
         self.wins = 0
+        self.allin = 0
         self.maxhand = ''
         self.behavior = ''
  
@@ -75,7 +76,7 @@ class roommember:
             table = self.get_table(self.roomid)
             return table.save({'roomid':self.roomid,'uid':self.uid,
                                       'joinchips':self.joinchips,'totalchips':self.totalchips,
-                                      'boardnum':self.boardnum,'wins':self.wins,
+                                      'boardnum':self.boardnum,'wins':self.wins,'allin':self.allin
                                       'maxhand':self.maxhand,'behavior':self.behavior})
         except IOError as e:
             print e
@@ -88,7 +89,7 @@ class roommember:
             table = self.get_table(self.roomid)
             return table.update({'roomid':self.roomid,'uid':self.uid},
                                              {'$set':{'totalchips':self.totalchips,
-                                              'boardnum':self.boardnum,'wins':self.wins,
+                                              'boardnum':self.boardnum,'wins':self.wins,'allin':self.allin
                                               'maxhand':self.maxhand,'behavior':self.behavior}})
         except IOError as e:
             print e
